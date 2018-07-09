@@ -23,3 +23,21 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+const { numbers, calculatorScreen, keyCode } = require("../PageObject");
+
+Cypress.Commands.add("verifyNumberButtonInput", (numberButton, numberValue) => {
+  cy.get(numberButton).click();
+  // cy.get(calculatorScreen.resultOutput).scrollIntoView();
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    numberValue
+  );
+});
+
+Cypress.Commands.add("clearInput", expectedDisplay => {
+  cy.get(numbers.delete.idLocator).click();
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    expectedDisplay
+  );
+});

@@ -23,7 +23,7 @@ npm i
 ### Run the tests:
 
 ```
-test:e2e:chrome
+npm run test:e2e:chrome
 ```
 
 ## Authors
