@@ -1,26 +1,12 @@
 const { numbers, calculatorScreen, keyCode } = require("../../PageObject");
 
-describe("Verify that the user is able to delete last number", () => {
-  it("Visit Home", () => {
-    cy.visit("/");
-  });
-
-  it("Should input number 12", () => {
-    cy.verifyNumberButtonInput(numbers.one.idLocator, numbers.one.value);
-    cy.verifyNumberButtonInput(numbers.two.idLocator, numbers.two.value);
-  });
-
-  it("Should delete 2", () => {
-    cy.clearInput("1");
-  });
-});
-
 describe("Verify that the user is able to delete multiple numbers", () => {
-  it("Visit Home", () => {
+  before(() => {
     cy.visit("/");
+    cy.wait(150);
   });
 
-  it("Should input number 12", () => {
+  it("Should input number 123", () => {
     cy.verifyNumberButtonInput(numbers.one.idLocator, numbers.one.value);
     cy.verifyNumberButtonInput(numbers.two.idLocator, numbers.two.value);
     cy.verifyNumberButtonInput(numbers.three.idLocator, numbers.three.value);
@@ -31,12 +17,26 @@ describe("Verify that the user is able to delete multiple numbers", () => {
     cy.clearInput("1");
   });
 });
-
-describe("Verify that the user is able to delete using Delete Key", () => {
-  it("Visit Home", () => {
+describe("Verify that the user is able to delete last number", () => {
+  before(() => {
     cy.visit("/");
+    cy.wait(150);
+  });
+  it("Should input number 12", () => {
+    cy.verifyNumberButtonInput(numbers.one.idLocator, numbers.one.value);
+    cy.verifyNumberButtonInput(numbers.two.idLocator, numbers.two.value);
   });
 
+  it("Should delete 2", () => {
+    cy.clearInput("1");
+  });
+});
+
+describe("Verify that the user is able to delete using Delete Key", () => {
+  before(() => {
+    cy.visit("/");
+    cy.wait(150);
+  });
   it("Should input number 12", () => {
     cy.verifyNumberButtonInput(numbers.one.idLocator, numbers.one.value);
     cy.verifyNumberButtonInput(numbers.two.idLocator, numbers.two.value);
@@ -49,10 +49,10 @@ describe("Verify that the user is able to delete using Delete Key", () => {
 });
 
 describe("Verify that after mathematical operation Clicking Delete will erase all input", () => {
-  it("Visit Home", () => {
+  before(() => {
     cy.visit("/");
+    cy.wait(150);
   });
-
   it("Should multiply 4 x 5", () => {
     cy.verifyNumberButtonInput(numbers.four.idLocator, numbers.four.value);
     cy.get(numbers.multiply.idLocator).click();
@@ -67,10 +67,10 @@ describe("Verify that after mathematical operation Clicking Delete will erase al
 });
 
 describe("Verify that after mathematical Pressing Clicking Delete will erase all input", () => {
-  it("Visit Home", () => {
+  before(() => {
     cy.visit("/");
+    cy.wait(150);
   });
-
   it("Should multiply 4 x 5", () => {
     cy.verifyNumberButtonInput(numbers.four.idLocator, numbers.four.value);
     cy.get(numbers.multiply.idLocator).click();

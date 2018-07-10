@@ -26,7 +26,11 @@
 const { numbers, calculatorScreen, keyCode } = require("../PageObject");
 
 Cypress.Commands.add("verifyNumberButtonInput", (numberButton, numberValue) => {
-  cy.get(numberButton).click();
+  cy.wait(100);
+  // cy.get(".cwtlptc")
+  //   .invoke("width")
+  //   .should("be.gt", 0);
+  cy.get(numberButton).click({ force: true });
   // cy.get(calculatorScreen.resultOutput).scrollIntoView();
   cy.get(calculatorScreen.resultOutput.idLocator).should(
     "contain",
@@ -35,9 +39,86 @@ Cypress.Commands.add("verifyNumberButtonInput", (numberButton, numberValue) => {
 });
 
 Cypress.Commands.add("clearInput", expectedDisplay => {
-  cy.get(numbers.delete.idLocator).click();
+  cy.get(numbers.deleteCE.idLocator).click();
   cy.get(calculatorScreen.resultOutput.idLocator).should(
     "contain",
     expectedDisplay
   );
+});
+
+Cypress.Commands.add("mathOperations", (input1, operation, input2) => {
+  // This is a custom command for simple Mathematical operations.
+  //example: cy.mathOperations(numbers.nine, numbers.multiply, numbers.five);
+  //example: cy.mathOperations(numbers.one, numbers.add, numbers.one);
+
+  cy.get(input1.idLocator).click({ force: true });
+
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    input1.value
+  );
+
+  cy.get(operation.idLocator).click({ force: true });
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    operation.displayValue
+  );
+
+  cy.get(input2.idLocator).click({ force: true });
+
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    input2.value
+  );
+
+  cy.get(numbers.result.idLocator).click({ force: true });
+
+  var math_it_up = {
+    "+": function(x, y) {
+      return x + y;
+    },
+    "-": function(x, y) {
+      return x - y;
+    },
+    "*": function(x, y) {
+      return x * y;
+    },
+    "/": function(x, y) {
+      return x / y;
+    }
+  };
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    math_it_up[operation.value](input1.value, input2.value)
+  );
+});
+
+Cypress.Commands.add("clearInput", expectedDisplay => {
+  cy.get(numbers.deleteCE.idLocator).click({ force: true });
+  cy.get(calculatorScreen.resultOutput.idLocator).should(
+    "contain",
+    expectedDisplay
+  );
+});
+
+Cypress.Commands.add("viewportVisibilityElements", () => {
+  cy.get(calculatorScreen.calculatorComponent.idLocator).should("be.visible");
+  cy.get(calculatorScreen.resultOutput.idLocator).should("be.visible");
+  cy.get(numbers.one.idLocator).should("be.visible");
+  cy.get(numbers.two.idLocator).should("be.visible");
+  cy.get(numbers.three.idLocator).should("be.visible");
+  cy.get(numbers.four.idLocator).should("be.visible");
+  cy.get(numbers.five.idLocator).should("be.visible");
+  cy.get(numbers.six.idLocator).should("be.visible");
+  cy.get(numbers.seven.idLocator).should("be.visible");
+  cy.get(numbers.eight.idLocator).should("be.visible");
+  cy.get(numbers.nine.idLocator).should("be.visible");
+  cy.get(numbers.zero.idLocator).should("be.visible");
+  cy.get(numbers.deleteAC.idLocator).should("be.visible");
+  cy.get(numbers.divide.idLocator).should("be.visible");
+  cy.get(numbers.multiply.idLocator).should("be.visible");
+  cy.get(numbers.subtract.idLocator).should("be.visible");
+  cy.get(numbers.add.idLocator).should("be.visible");
+  cy.get(numbers.result.idLocator).should("be.visible");
+  cy.get(numbers.point.idLocator).should("be.visible");
 });

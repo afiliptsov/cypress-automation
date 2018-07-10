@@ -62,26 +62,38 @@ const numbers = {
     value: 9,
     idLocator: "#cwbt15"
   },
-  delete: {
+  deleteCE: {
     idLocator: "#cwclrbtnCE"
   },
+  deleteAC: {
+    idLocator: "#cwclrbtnAC"
+  },
   divide: {
+    value: "/",
+    displayValue: "÷",
     idLocator: "#cwbt16"
   },
   multiply: {
+    value: "*",
+    displayValue: "×",
     idLocator: "#cwbt26"
   },
   subtract: {
+    value: "-",
+    displayValue: "-",
     idLocator: "#cwbt36"
   },
   add: {
+    value: "+",
+    displayValue: "+",
     idLocator: "#cwbt46"
   },
   result: {
-    idLocator: "#cwbt45"
+    idLocator: "#cwbt45 "
   },
   point: {
-    idLocator: "#cwbt44"
+    displayValue: ".",
+    idLocator: "#cwbt44 "
   }
 };
 

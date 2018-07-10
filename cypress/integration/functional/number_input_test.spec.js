@@ -3,6 +3,7 @@ const { numbers, calculatorScreen, keyCode } = require("../../PageObject");
 describe("Verify that the user is able to input numbers", () => {
   it("Visit Home", () => {
     cy.visit("/");
+    cy.wait(150);
   });
 
   it("Should Click button 1", () => {
