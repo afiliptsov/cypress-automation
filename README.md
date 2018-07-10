@@ -111,13 +111,13 @@ cy.wait(150);
 ```
 
 I spend over 4 hours by looking for the solution because "wait" is considered a bad practice, but none of the solutions worked.
-This one** will not** work aswell:
+This one **will not** work aswell:
 
 ```
 cy.get('#query-btn').invoke('width').should('be.gt', 0)
 ```
 
-2.  As well as on force clicks i was needed to add because click were not always being executed.
+2.  In some cases force clicks were required to add because click were not always being executed.
 
 ```
 { force: true }
