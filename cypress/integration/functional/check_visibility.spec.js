@@ -1,4 +1,4 @@
-const { numbers, calculatorScreen, keyCode } = require("../../PageObject");
+const { numbers, calculatorScreen } = require("../../PageObject");
 
 describe("Verify the visibility of calculator elements on the screen", () => {
   it("Visit Home", () => {

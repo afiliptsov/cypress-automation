@@ -1,4 +1,4 @@
-const { numbers, calculatorScreen, keyCode } = require("../../PageObject");
+const { numbers } = require("../../PageObject");
 
 describe("Verify that the user is able to divide", () => {
   beforeEach(() => {

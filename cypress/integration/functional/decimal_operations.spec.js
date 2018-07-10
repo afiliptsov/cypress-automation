@@ -1,4 +1,4 @@
-const { numbers, calculatorScreen, keyCode } = require("../../PageObject");
+const { numbers, calculatorScreen } = require("../../PageObject");
 
 describe("Verify that the user is able mathematical operations with decimals", () => {
   beforeEach(() => {
@@ -12,18 +12,14 @@ describe("Verify that the user is able mathematical operations with decimals", (
       numbers.point.displayValue
     );
     cy.verifyNumberButtonInput(numbers.nine.idLocator, numbers.nine.value);
-
     cy.verifyNumberButtonInput(numbers.add.idLocator, numbers.add.displayValue);
-
     cy.verifyNumberButtonInput(numbers.three.idLocator, numbers.three.value);
     cy.verifyNumberButtonInput(
       numbers.point.idLocator,
       numbers.point.displayValue
     );
     cy.verifyNumberButtonInput(numbers.two.idLocator, numbers.two.value);
-
     cy.get(numbers.result.idLocator).click();
-
     cy.get(calculatorScreen.resultOutput.idLocator).should("contain", "4.1");
   });
 });

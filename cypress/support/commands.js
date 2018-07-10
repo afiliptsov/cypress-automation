@@ -27,11 +27,7 @@ const { numbers, calculatorScreen, keyCode } = require("../PageObject");
 
 Cypress.Commands.add("verifyNumberButtonInput", (numberButton, numberValue) => {
   cy.wait(100);
-  // cy.get(".cwtlptc")
-  //   .invoke("width")
-  //   .should("be.gt", 0);
   cy.get(numberButton).click({ force: true });
-  // cy.get(calculatorScreen.resultOutput).scrollIntoView();
   cy.get(calculatorScreen.resultOutput.idLocator).should(
     "contain",
     numberValue
@@ -47,10 +43,6 @@ Cypress.Commands.add("clearInput", expectedDisplay => {
 });
 
 Cypress.Commands.add("mathOperations", (input1, operation, input2) => {
-  // This is a custom command for simple Mathematical operations.
-  //example: cy.mathOperations(numbers.nine, numbers.multiply, numbers.five);
-  //example: cy.mathOperations(numbers.one, numbers.add, numbers.one);
-
   cy.get(input1.idLocator).click({ force: true });
 
   cy.get(calculatorScreen.resultOutput.idLocator).should(
