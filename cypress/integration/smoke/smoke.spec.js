@@ -37,7 +37,7 @@ describe("Verify math operations", () => {
   });
 });
 
-describe("Verify that the user is able to input numbers", () => {
+describe("Verify that user is able to input numbers", () => {
   it("Visit Home", () => {
     cy.visit("/");
   });
